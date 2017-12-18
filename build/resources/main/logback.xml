@@ -1,0 +1,33 @@
+<configuration>
+    <jmxConfigurator/>
+
+    <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <Pattern>##-> %d{HH:mm:ss.SSS} %thread - %-5level- %logger{36}: %msg%n
+            </Pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>TRACE</level>
+        </filter>
+    </appender>
+
+    <logger name="com.its" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="consoleAppender"/>
+    </logger>
+
+    <logger name="org.apache.spark" additivity="false">
+        <level value="ERROR"/>
+        <appender-ref ref="consoleAppender"/>
+    </logger>
+
+    <logger name="org.spark" additivity="false">
+        <level value="ERROR"/>
+        <appender-ref ref="consoleAppender"/>
+    </logger>
+
+    <root>
+        <level value="ERROR"/>
+        <appender-ref ref="consoleAppender"/>
+    </root>
+</configuration>

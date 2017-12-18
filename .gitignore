@@ -1,0 +1,7 @@
+/target/
+target
+.idea
+*.iml
+*.log
+metastore_db
+project

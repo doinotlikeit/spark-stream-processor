@@ -1,0 +1,124 @@
+{
+  "template": "data-*",
+  "settings": {
+    "index.mapping.total_fields.limit": 25000,
+    "index.mapping.depth.limit": 50,
+    "index.mapping.nested_fields.limit": 100,
+    "index.codec": "best_compression",
+    "number_of_shards": 1,
+    "number_of_replicas": 0
+  },
+  "mappings": {
+    "GOOD_DATA_REC": {
+      "_all": {
+        "enabled": false
+      },
+      "_source": {
+        "enabled": true
+      },
+      "properties": {
+        "eventType": {
+          "type": "keyword",
+          "analyzer": "keyword"
+        },
+        "timestamp": {
+          "type": "date"
+        },
+        "actualDepTime": {
+          "type": "keyword"
+        },
+        "CRSDepTime": {
+          "type": "keyword"
+        },
+        "arrTime": {
+          "type": "keyword"
+        },
+        "CRSArrTime": {
+          "type": "keyword"
+        },
+        "carrierCode": {
+          "type": "keyword"
+        },
+        "flightNumber": {
+          "type": "keyword"
+        },
+        "tailNumber": {
+          "type": "keyword"
+        },
+        "actualElapsedTime": {
+          "type": "keyword"
+        },
+        "CRSElapsedTime": {
+          "type": "keyword"
+        },
+        "airTime": {
+          "type": "keyword"
+        },
+        "arrivalDelay": {
+          "type": "keyword"
+        },
+        "departureDelay": {
+          "type": "keyword"
+        },
+        "origin": {
+          "type": "keyword"
+        },
+        "destination": {
+          "type": "keyword"
+        },
+        "distance": {
+          "type": "keyword"
+        },
+        "taxiIn": {
+          "type": "keyword"
+        },
+        "taxiOut": {
+          "type": "keyword"
+        },
+        "cancelled": {
+          "type": "keyword"
+        },
+        "cancellationCode": {
+          "type": "keyword"
+        },
+        "diverted": {
+          "type": "keyword"
+        },
+        "carrierDelay": {
+          "type": "keyword"
+        },
+        "weatherDelay": {
+          "type": "keyword"
+        },
+        "NASDelay": {
+          "type": "keyword"
+        },
+        "securityDelay": {
+          "type": "keyword"
+        },
+        "lateAircraftDelay": {
+          "type": "keyword"
+        }
+      }
+    },
+    "ERROR_DATA_REC": {
+      "_all": {
+        "enabled": false
+      },
+      "_source": {
+        "enabled": true
+      },
+      "properties": {
+        "eventType": {
+          "type": "keyword"
+        },
+        "timestamp": {
+          "type": "date"
+        },
+        "errorData": {
+          "type": "text"
+        }
+      }
+    }
+  }
+}   

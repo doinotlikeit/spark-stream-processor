@@ -1,0 +1,66 @@
+apply plugin: 'scala'
+apply plugin: "maven-publish"
+apply plugin: 'idea'
+apply plugin: 'application'
+
+
+group = 'com.its.demo'
+version = '1.0.0-SNAPSHOT'
+sourceCompatibility = 1.8
+project.mainClassName = 'com.its.demo.sparkstreaming.SparkDriverApp'
+
+
+run {
+  args += 'local'
+}
+
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+
+dependencies {
+    compile( 'org.scala-lang:scala-library:2.11.7' )
+
+    //compile('org.slf4j:jcl-over-slf4j:1.7.5')
+    compile('org.slf4j:slf4j-api:1.7.5')
+    compile('ch.qos.logback:logback-classic:1.0.13')
+    compile('ch.qos.logback:logback-core:1.0.13')
+
+    compile('org.apache.spark:spark-streaming_2.11:2.1.1')
+    compile('org.apache.spark:spark-streaming-kafka-0-10_2.11:2.1.1')
+
+    compile('org.apache.kafka:connect-api:0.11.0.1')
+
+    compile('org.elasticsearch:elasticsearch:5.2.1')
+    compile('org.elasticsearch.client:transport:5.2.1')
+
+    compile('com.fasterxml.jackson.module:jackson-module-scala_2.11:2.7.4')
+
+    compile('org.apache.logging.log4j:log4j-core:2.9.0')
+    compile('log4j:log4j:1.2.17')
+
+    compile('io.dropwizard.metrics:metrics-core:3.2.2')
+}
+
+task sparkJar(type: Jar) {
+    appendix = 'spark'
+    zip64 true
+    from sourceSets.main.output
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    with jar
+    exclude 'META-INF/*.RSA', 'META-INF/*.SF', 'META-INF/*.DSA'
+}
+
+build.dependsOn(sparkJar)
+
